@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pilah Sampah di Sekolah</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #d5f5e3, #d6eaf8);
+            color: #2c3e50;
+        }
+
+        .halaman {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .kotak {
+            background: white;
+            width: 100%;
+            max-width: 850px;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #229954;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #2874a6;
+        }
+
+        .logo {
+            font-size: 75px;
+        }
+
+        .subjudul {
+            color: #666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        input {
+            width: 80%;
+            max-width: 500px;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #2ecc71;
+            border-radius: 12px;
+            margin: 15px 0;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #229954;
+        }
+
+        button {
+            border: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            background: #27ae60;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background: #1e8449;
+            transform: scale(1.03);
+        }
+
+        .tombol-kuning {
+            background: #f39c12;
+        }
+
+        .tombol-kuning:hover {
+            background: #d68910;
+        }
+
+        .tombol-merah {
+            background: #e74c3c;
+        }
+
+        .tombol-merah:hover {
+            background: #c0392b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .penjelasan {
+            background: #eafaf1;
+            border-left: 6px solid #27ae60;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            line-height: 1.7;
+            margin: 20px 0;
+        }
+
+        .aturan {
+            background: #fef9e7;
+            border-left: 6px solid #f1c40f;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .nomor-soal {
+            color: #7f8c8d;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .soal {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+
+        .pilihan {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pilihan button {
+            margin: 0;
+            background: #3498db;
+            min-height: 65px;
+        }
+
+        .pilihan button:hover {
+            background: #2874a6;
+        }
+
+        .benar {
+            background: #d5f5e3;
+            color: #1e8449;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .salah {
+            background: #fadbd8;
+            color: #c0392b;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .skor {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .progress-container {
+            background: #ecf0f1;
+            border-radius: 20px;
+            height: 18px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: #2ecc71;
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s;
+        }
+
+        .hasil-skor {
+            font-size: 55px;
+            color: #27ae60;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .pesan-hasil {
+            font-size: 19px;
+            line-height: 1.7;
+        }
+
+        .kartu-lingkungan {
+            background: #e8f8f5;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 650px) {
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .kotak {
+                padding: 20px;
+            }
+
+            .pilihan {
+                grid-template-columns: 1fr;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            .soal {
+                font-size: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HALAMAN NAMA ================= -->
+
+<div id="halamanNama" class="halaman">
+
+    <div class="kotak">
+
+        <div class="logo">
+            ♻️🏫
+        </div>
+
+        <h1>
+            PILAH SAMPAH!
+        </h1>
+
+        <p class="subjudul">
+            Game Edukasi Pemilahan Sampah<br>
+            untuk Pelajar SMP
+        </p>
+
+        <p>
+            Sebelum mulai, tuliskan nama kamu!
+        </p>
+
+        <input
+            type="text"
+            id="inputNama"
+            placeholder="Masukkan nama kamu..."
+        >
+
+        <br>
+
+        <button onclick="mulaiPermainan()">
+            ▶ START
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HALAMAN PENJELASAN ================= -->
+
+<div id="halamanPenjelasan" class="halaman hidden">
+
+    <div class="kotak">
+
+        <div class="logo">
+            🌱♻️
+        </div>
+
+        <h1>
+            Halo, <span id="namaPemain"></span>!
+        </h1>
+
+        <h2>
+            Kenapa Kita Harus Memilah Sampah?
+        </h2>
+
+        <div class="penjelasan">
+
+            <p>
+                Sampah yang kita hasilkan setiap hari memiliki
+                jenis dan cara pengelolaan yang berbeda.
+                Jika semua sampah dicampur, sampah yang sebenarnya
+                masih dapat dimanfaatkan bisa menjadi sulit untuk
+                didaur ulang.
+            </p>
+
+            <p>
+                Di sekolah, kita bisa mulai menjaga lingkungan
+                dengan membuang sampah pada tempat yang tepat.
+                Hal sederhana seperti membuang botol plastik,
+                sisa makanan, kertas, dan baterai sesuai jenisnya
+                dapat membantu membuat lingkungan sekolah lebih
+                bersih dan sehat.
+            </p>
+
+            <p>
+                🌱 <b>Ingat:</b> menjaga lingkungan bukan hanya
+                tugas petugas kebersihan. Kita semua memiliki
+                tanggung jawab untuk menjaga sekolah dan lingkungan
+                di sekitar kita.
+            </p>
+
+        </div>
+
+
+        <div class="aturan">
+
+            <b>📋 CARA BERMAIN</b>
+
+            <br><br>
+
+            • Kamu akan mendapatkan <b>15 soal</b>.<br>
+            • Setiap soal memiliki satu jawaban paling tepat.<br>
+            • Jawaban benar mendapatkan <b>10 poin</b>.<br>
+            • Bacalah soal dengan teliti karena beberapa soal
+              cukup tricky! 😈<br>
+            • Jangan terburu-buru memilih jawaban.
+
+        </div>
+
+
+        <button onclick="mulaiQuiz()">
+            🚀 MULAI QUIZ
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HALAMAN QUIZ ================= -->
+
+<div id="halamanQuiz" class="halaman hidden">
+
+    <div class="kotak">
+
+        <h1>
+            ♻️ Pilah Sampah Sekolah
+        </h1>
+
+        <div class="skor">
+            ⭐ Skor: <span id="skor">0</span>
+        </div>
+
+        <p class="nomor-soal">
+            Soal <span id="nomor">1</span> dari 15
+        </p>
+
+        <div class="progress-container">
+
+            <div
+                class="progress"
+                id="progress">
+            </div>
+
+        </div>
+
+        <div
+            class="soal"
+            id="teksSoal">
+        </div>
+
+
+        <div
+            class="pilihan"
+            id="pilihan">
+        </div>
+
+
+        <div
+            id="feedback">
+        </div>
+
+
+        <button
+            id="tombolBerikutnya"
+            class="tombol-kuning hidden"
+            onclick="soalBerikutnya()">
+
+            SOAL BERIKUTNYA ➜
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HALAMAN HASIL ================= -->
+
+<div id="halamanHasil" class="halaman hidden">
+
+    <div class="kotak">
+
+        <div class="logo">
+            🏆🌎
+        </div>
+
+        <h1>
+            Quiz Selesai!
+        </h1>
+
+        <h2>
+            Hebat, <span id="namaHasil"></span>!
+        </h2>
+
+        <div class="hasil-skor">
+
+            <span id="skorAkhir">
+                0
+            </span>
+            / 150
+
+        </div>
+
+        <p
+            id="pesanHasil"
+            class="pesan-hasil">
+        </p>
+
+
+        <div class="kartu-lingkungan">
+
+            <h2>
+                🌱 Pesan untuk Kita
+            </h2>
+
+            <p>
+                Lingkungan sekolah adalah tempat kita belajar,
+                bermain, dan beraktivitas setiap hari.
+                Karena itu, kebersihan sekolah merupakan tanggung
+                jawab kita bersama.
+            </p>
+
+            <p>
+                Memilah sampah memang terlihat seperti tindakan
+                kecil, tetapi jika dilakukan oleh banyak orang,
+                dampaknya bisa sangat besar.
+            </p>
+
+            <p>
+                ♻️ Kurangi penggunaan barang sekali pakai.<br>
+                🗑️ Buang sampah sesuai jenisnya.<br>
+                🌱 Jaga kebersihan lingkungan sekitar.<br>
+                💚 Ajak teman untuk melakukan hal yang sama.
+            </p>
+
+            <b>
+                "Sekolah bersih dimulai dari kita sendiri!"
+            </b>
+
+        </div>
+
+
+        <button
+            onclick="mainLagi()">
+
+            🔄 MAIN LAGI
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* ================= DATA SOAL ================= */
+
+
+const daftarSoal = [
+
+    {
+        soal:
+        "Kamu sedang makan roti di kantin. Bungkus rotinya berupa plastik bersih dan kering. Setelah roti habis, ke mana bungkus tersebut sebaiknya dibuang?",
+
+        pilihan: [
+            "Organik",
+            "Anorganik",
+            "B3",
+            "Semua tempat sampah boleh"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Bungkus plastik bersih dan kering termasuk sampah anorganik yang dapat dikelola atau didaur ulang."
+    },
+
+
+    {
+        soal:
+        "Saat piket kelas, kamu menemukan daun kering yang jatuh dari pohon di halaman sekolah. Sampah tersebut paling tepat dimasukkan ke kategori...",
+
+        pilihan: [
+            "Organik",
+            "Anorganik",
+            "B3",
+            "Elektronik"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Daun berasal dari makhluk hidup dan dapat terurai secara alami, sehingga termasuk sampah organik."
+    },
+
+
+    {
+        soal:
+        "Kamu menemukan botol plastik bekas minuman. Di dalamnya masih tersisa sedikit air. Apa tindakan yang paling tepat sebelum membuangnya?",
+
+        pilihan: [
+            "Langsung masukkan ke tempat sampah",
+            "Masukkan ke tempat sampah organik",
+            "Kosongkan isinya terlebih dahulu lalu pilah sesuai jenisnya",
+            "Buang botol dan air ke tanah"
+        ],
+
+        jawaban: 2,
+
+        penjelasan:
+        "Sisa cairan sebaiknya dikosongkan terlebih dahulu agar tidak mengotori sampah lain. Setelah itu botol plastik dapat dipilah sebagai anorganik."
+    },
+
+
+    {
+        soal:
+        "Temanmu membuang sisa nasi dan sendok plastik sekali pakai ke tempat sampah yang sama. Apa yang sebaiknya dilakukan?",
+
+        pilihan: [
+            "Dibiarkan karena semuanya adalah sampah",
+            "Pisahkan sisa nasi dan sendok plastik sesuai jenisnya",
+            "Masukkan semuanya ke B3",
+            "Buang semuanya ke selokan"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Sisa nasi termasuk organik, sedangkan sendok plastik termasuk anorganik. Memisahkannya membantu pengelolaan sampah."
+    },
+
+
+    {
+        soal:
+        "Baterai bekas remote ditemukan di laci kelas. Mengapa baterai tidak boleh dibuang bersama sampah biasa?",
+
+        pilihan: [
+            "Karena baterai terlalu kecil",
+            "Karena baterai dapat mengandung bahan berbahaya",
+            "Karena baterai termasuk makanan",
+            "Karena baterai mudah terurai"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Baterai bekas dapat mengandung bahan yang berbahaya bagi lingkungan sehingga perlu ditangani secara khusus."
+    },
+
+
+    {
+        soal:
+        "Manakah tindakan yang paling ramah lingkungan ketika membeli minuman di kantin sekolah?",
+
+        pilihan: [
+            "Selalu menggunakan gelas sekali pakai",
+            "Membawa botol minum yang dapat digunakan kembali",
+            "Membeli dua botol plastik sekaligus",
+            "Membuang botol di halaman"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Membawa botol minum sendiri dapat mengurangi penggunaan kemasan sekali pakai."
+    },
+
+
+    {
+        soal:
+        "Kertas ulangan bekas yang hanya memiliki tulisan di satu sisi masih bisa digunakan untuk membuat catatan. Tindakan tersebut merupakan contoh...",
+
+        pilihan: [
+            "Mengurangi penggunaan sumber daya",
+            "Membuang sampah sembarangan",
+            "Mencampur sampah",
+            "Menghasilkan sampah B3"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Menggunakan kembali sisi kertas yang masih kosong merupakan contoh penggunaan ulang atau reuse."
+    },
+
+
+    {
+        soal:
+        "Lampu neon bekas ditemukan saat membersihkan ruang kelas. Mengapa kita tidak boleh sembarangan memecahkan dan membuangnya?",
+
+        pilihan: [
+            "Karena lampu adalah sampah makanan",
+            "Karena beberapa jenis lampu mengandung bahan yang perlu ditangani dengan hati-hati",
+            "Karena lampu termasuk daun",
+            "Karena lampu dapat menjadi pupuk"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Beberapa lampu, seperti lampu fluoresen, dapat mengandung bahan berbahaya sehingga perlu penanganan khusus."
+    },
+
+
+    {
+        soal:
+        "Seorang siswa membuang tisu bekas mengelap sisa makanan berminyak ke tempat sampah anorganik karena mengira semua benda berwarna putih adalah anorganik. Apa masalah dari tindakan tersebut?",
+
+        pilihan: [
+            "Warna benda menentukan jenis sampah",
+            "Jenis sampah ditentukan berdasarkan sifat dan bahannya, bukan warnanya",
+            "Semua benda putih harus masuk B3",
+            "Tisu selalu termasuk plastik"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Warna bukan penentu jenis sampah. Tisu bekas makanan umumnya termasuk sampah yang sulit didaur ulang dan perlu dikelola sesuai sistem sampah setempat."
+    },
+
+
+    {
+        soal:
+        "Kamu melihat botol kaca bekas minuman di dekat lapangan. Apa alasan utama botol tersebut sebaiknya tidak dilempar sembarangan?",
+
+        pilihan: [
+            "Karena kaca dapat melukai orang jika pecah",
+            "Karena kaca dapat dimakan",
+            "Karena kaca adalah sampah organik",
+            "Karena kaca mudah berubah menjadi daun"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Kaca dapat pecah menjadi bagian tajam dan melukai orang. Karena itu harus ditangani dan dipilah dengan hati-hati."
+    },
+
+
+    {
+        soal:
+        "Manakah contoh kegiatan yang termasuk prinsip REDUCE?",
+
+        pilihan: [
+            "Membawa tumbler sehingga mengurangi botol sekali pakai",
+            "Membuat kerajinan dari botol bekas",
+            "Memasukkan sampah ke tempat sampah",
+            "Membakar semua sampah"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Reduce berarti mengurangi penggunaan barang atau sumber daya sehingga sampah yang dihasilkan juga berkurang."
+    },
+
+
+    {
+        soal:
+        "Manakah contoh kegiatan yang paling tepat disebut REUSE?",
+
+        pilihan: [
+            "Membawa kembali kotak makan untuk digunakan berkali-kali",
+            "Menghancurkan botol plastik",
+            "Membuang kertas ke tempat sampah",
+            "Membakar sampah"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Reuse berarti menggunakan kembali barang yang masih layak digunakan tanpa harus langsung membuangnya."
+    },
+
+
+    {
+        soal:
+        "Di kelas terdapat kardus bekas yang masih bersih. Seorang siswa menggunakannya untuk membuat tempat penyimpanan alat tulis. Tindakan tersebut merupakan contoh...",
+
+        pilihan: [
+            "Reuse",
+            "B3",
+            "Pencemaran",
+            "Pemborosan"
+        ],
+
+        jawaban: 0,
+
+        penjelasan:
+        "Kardus digunakan kembali untuk fungsi lain sehingga merupakan contoh reuse."
+    },
+
+
+    {
+        soal:
+        "Kamu melihat teman membuang sampah sembarangan di halaman sekolah. Sikap yang paling tepat adalah...",
+
+        pilihan: [
+            "Ikut membuang sampah sembarangan",
+            "Membiarkannya karena bukan urusan kita",
+            "Mengingatkan dengan sopan dan mengajak membuang sampah pada tempatnya",
+            "Menyembunyikan sampah tersebut"
+        ],
+
+        jawaban: 2,
+
+        penjelasan:
+        "Menjaga lingkungan merupakan tanggung jawab bersama. Mengingatkan teman dengan sopan adalah tindakan positif."
+    },
+
+
+    {
+        soal:
+        "Sekolah ingin mengurangi jumlah sampah setiap hari. Program manakah yang paling tepat dilakukan?",
+
+        pilihan: [
+            "Menambah jumlah tempat sampah tanpa mengubah kebiasaan",
+            "Membiasakan pemilahan, mengurangi barang sekali pakai, dan menggunakan kembali barang yang masih layak",
+            "Membakar semua sampah setiap sore",
+            "Membuang sampah ke sungai agar halaman bersih"
+        ],
+
+        jawaban: 1,
+
+        penjelasan:
+        "Mengurangi sampah dari sumbernya, menggunakan kembali barang, dan memilah sampah merupakan langkah yang lebih baik untuk menjaga lingkungan."
+    }
+
+];
+
+
+/* ================= VARIABEL GAME ================= */
+
+
+let nama = "";
+
+let nomorSoal = 0;
+
+let skor = 0;
+
+let sudahMenjawab = false;
+
+
+/* ================= MULAI PERMAINAN ================= */
+
+
+function mulaiPermainan() {
+
+    const input =
+        document.getElementById("inputNama");
+
+    nama = input.value.trim();
+
+
+    if (nama === "") {
+
+        alert("Silakan masukkan nama kamu terlebih dahulu!");
+
+        return;
+    }
+
+
+    document.getElementById("namaPemain").textContent =
+        nama;
+
+
+    document.getElementById("halamanNama")
+        .classList.add("hidden");
+
+
+    document.getElementById("halamanPenjelasan")
+        .classList.remove("hidden");
+
+}
+
+
+/* ================= MULAI QUIZ ================= */
+
+
+function mulaiQuiz() {
+
+    nomorSoal = 0;
+
+    skor = 0;
+
+    document.getElementById("halamanPenjelasan")
+        .classList.add("hidden");
+
+
+    document.getElementById("halamanQuiz")
+        .classList.remove("hidden");
+
+
+    tampilkanSoal();
+
+}
+
+
+/* ================= TAMPILKAN SOAL ================= */
+
+
+function tampilkanSoal() {
+
+    sudahMenjawab = false;
+
+
+    const data =
+        daftarSoal[nomorSoal];
+
+
+    document.getElementById("nomor").textContent =
+        nomorSoal + 1;
+
+
+    document.getElementById("skor").textContent =
+        skor;
+
+
+    document.getElementById("teksSoal").textContent =
+        data.soal;
+
+
+    const progress =
+        ((nomorSoal) / daftarSoal.length) * 100;
+
+
+    document.getElementById("progress").style.width =
+        progress + "%";
+
+
+    const pilihan =
+        document.getElementById("pilihan");
+
+
+    pilihan.innerHTML = "";
+
+
+    document.getElementById("feedback")
+        .innerHTML = "";
+
+
+    document.getElementById("tombolBerikutnya")
+        .classList.add("hidden");
+
+
+    data.pilihan.forEach(function(jawaban, index) {
+
+        const tombol =
+            document.createElement("button");
+
+
+        tombol.textContent =
+            jawaban;
+
+
+        tombol.onclick =
+            function() {
+
+                cekJawaban(index);
+
+            };
+
+
+        pilihan.appendChild(tombol);
+
+    });
+
+}
+
+
+/* ================= CEK JAWABAN ================= */
+
+
+function cekJawaban(pilihanUser) {
+
+    if (sudahMenjawab) {
+        return;
+    }
+
+
+    sudahMenjawab = true;
+
+
+    const data =
+        daftarSoal[nomorSoal];
+
+
+    const tombol =
+        document.querySelectorAll(
+            "#pilihan button"
+        );
+
+
+    tombol.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+
+    if (pilihanUser === data.jawaban) {
+
+        skor += 10;
+
+
+        document.getElementById("skor").textContent =
+            skor;
+
+
+        document.getElementById("feedback").innerHTML =
+
+            '<div class="benar">' +
+            '✅ JAWABAN BENAR!<br><br>' +
+            data.penjelasan +
+            '</div>';
+
+    }
+
+    else {
+
+        document.getElementById("feedback").innerHTML =
+
+            '<div class="salah">' +
+            '❌ JAWABAN KURANG TEPAT.<br><br>' +
+            '<b>Jawaban yang benar:</b> ' +
+            data.pilihan[data.jawaban] +
+            '<br><br>' +
+            data.penjelasan +
+            '</div>';
+
+    }
+
+
+    document.getElementById("tombolBerikutnya")
+        .classList.remove("hidden");
+
+}
+
+
+/* ================= SOAL BERIKUTNYA ================= */
+
+
+function soalBerikutnya() {
+
+    nomorSoal++;
+
+
+    if (nomorSoal >= daftarSoal.length) {
+
+        tampilkanHasil();
+
+        return;
+    }
+
+
+    tampilkanSoal();
+
+}
+
+
+/* ================= HASIL ================= */
+
+
+function tampilkanHasil() {
+
+    document.getElementById("halamanQuiz")
+        .classList.add("hidden");
+
+
+    document.getElementById("halamanHasil")
+        .classList.remove("hidden");
+
+
+    document.getElementById("namaHasil")
+        .textContent = nama;
+
+
+    document.getElementById("skorAkhir")
+        .textContent = skor;
+
+
+    let pesan = "";
+
+
+    if (skor >= 130) {
+
+        pesan =
+        "🌟 LUAR BIASA! Kamu sangat memahami cara memilah sampah dan menjaga lingkungan sekolah. Jadilah contoh bagi teman-temanmu!";
+
+    }
+
+    else if (skor >= 100) {
+
+        pesan =
+        "👏 BAGUS! Pengetahuanmu tentang pemilahan sampah sudah baik. Tingkatkan lagi ketelitianmu terhadap sampah yang tricky.";
+
+    }
+
+    else if (skor >= 70) {
+
+        pesan =
+        "👍 CUKUP BAIK! Kamu sudah memahami dasar pemilahan sampah. Yuk, pelajari lagi jenis-jenis sampah agar semakin yakin.";
+
+    }
+
+    else {
+
+        pesan =
+        "🌱 JANGAN MENYERAH! Memilah sampah adalah kebiasaan yang perlu dipelajari dan dilakukan setiap hari. Yuk, belajar lagi dan coba kembali!";
+
+    }
+
+
+    document.getElementById("pesanHasil")
+        .textContent = pesan;
+
+}
+
+
+/* ================= MAIN LAGI ================= */
+
+
+function mainLagi() {
+
+    document.getElementById("halamanHasil")
+        .classList.add("hidden");
+
+
+    document.getElementById("halamanNama")
+        .classList.remove("hidden");
+
+
+    document.getElementById("inputNama")
+        .value = "";
+
+
+    skor = 0;
+
+    nomorSoal = 0;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
